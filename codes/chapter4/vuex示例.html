@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <amount></amount>
+        <counter></counter>
+    </div>
+    <template id="amount">
+        <div style='background-color: lightblue;'>
+            <!-- <h3>{{ $store.state.count }}</h3> -->
+            <h3>{{ $store.getters.optCount }}</h3>
+        </div>
+    </template>
+    <template id='counter'>
+        <div style="background-color: lightcoral;">
+            <input type="button" value="减少" @click="remove">
+            <input type="button" value="增加" @click="add">
+            <br>
+            <input type="text" v-model="$store.state.count">
+        </div>
+    </template>
+    <script src="js/vue.js"></script>
+    <!-- 1.在 Vue 之后引入 vuex  -->
+    <script src="https://unpkg.com/vuex"></script>
+    <script>
+        // 2. new Vuex.Store() 实例，得到一个数据仓储对象
+        var store = new Vuex.Store({
+            state: {
+                count: 0
+            },
+            mutations: {
+                //自增
+                increment(state) {
+                    state.count++
+                },
+                //自减
+                subtract(state, obj) {
+                    state.count -=obj.val
+                }
+            },
+            getters: {
+                optCount: function (state) {
+                    return '当前文本框的值是：' + state.count
+                }
+            }
+        })
+        Vue.component('amount', {
+            template: '#amount'
+        });
+        Vue.component('counter', {
+            template: '#counter', 
+            data() {
+                return {};
+            },
+            methods: {
+                add() {
+                    // 千万不要这么用，不符合 vuex 的设计理念
+                    // this.$store.state.count++;
+                    store.commit("increment");
+                },
+                remove() {
+                    store.commit("subtract", { val: 1 });
+                }
+            }
+        });
+         // 创建一个Vue 实例，得到 ViewModel
+         var vm = new Vue({
+            el: '#app',
+            store, // 3.将vuex 创建的 store 挂载到 VM 实例上，只要挂载到了vm 上，任何组件都能使用 store 来存取数据
+            data: {},
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

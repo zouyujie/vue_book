@@ -1,0 +1,15 @@
+/*奇数*/
+ul li:nth-child(odd) {
+    background-color: green;
+}
+
+/*偶数*/
+ul li:nth-child(even) {
+    background-color: red;
+}
+
+ul li {
+    font-size: 12px;
+    line-height: 30px;
+    list-style: none;
+}

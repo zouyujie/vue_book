@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <account></account>
+    </div>
+    <!-- 3. -->
+    <script id="tmpl" type="x-template">
+            <div><h3 v-text="title"></h3><a href="#" @click.prevent='login'>登录</a> | <a href="#">注册</a></div>
+     </script>
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.component('account', {
+            template: '#tmpl', data() {
+                return {
+                    title: '后台登录'
+                }
+            },
+            methods: {
+                login() {
+                    console.log('点击了'+this.title+'页面的登录按钮');
+                }
+            }
+        });
+        // 创建 一个Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

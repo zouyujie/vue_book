@@ -1,0 +1,66 @@
+/*动画过渡*/
+/*fade动画特效*/
+/* 开始过渡阶段,动画出去阶段 */
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.5s ease-out;
+}
+
+/* 进入开始 */
+.fade-enter {
+    transform: translateY(-500px);
+    opacity: 0;
+}
+
+/* 出去终点 */
+.fade-leave-active {
+    transform: translateY(500px);
+    opacity: 0;
+}
+
+/*move动画特效*/
+.move-enter-active,
+.move-leave-active {
+    transition: opacity .5s;
+}
+
+.move-enter,
+.move-leave {
+    opacity: 0;
+}
+
+/*fade-transform*/
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+    transition: all .5s;
+}
+
+.fade-transform-enter {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+/*breadcrumb transition*/
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+    transition: all .5s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.breadcrumb-move {
+    transition: all .5s;
+}
+
+.breadcrumb-leave-active {
+    position: absolute;
+}

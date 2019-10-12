@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        你看不见我
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var login = {
+            template: '<h3>登录</h3>' // 通过 template 属性，指定了组件要展示的HTML结构
+        };
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            render: function (createElements) { // createElements 是一个方法，调用它能够把指定的组件模板渲染为 html 结构
+                return createElements(login)
+                // 注意：这里 return 的结果会直接替换页面中 el 指定的那个容器
+            }
+        });
+    </script>
+</body>
+
+</html>

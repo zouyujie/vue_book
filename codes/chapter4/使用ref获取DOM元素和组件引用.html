@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="谁是当今武林第一美人" @click="getResult">
+        <h3 id="xxy" ref="xxy">三少爷谢晓峰的女儿谢小玉</h3>
+        <hr>
+        <belle ref="mybelle"></belle>
+      </div>
+      <script src="./js/vue.js"></script>
+      <script>
+        var belle = {
+          template: '<h3>武林第一美人</h3>',
+          data() {
+            return {
+              name: '孔雀妃子梅吟雪',
+              subname:'李媚娘',
+            }
+          },
+          methods: {
+            show() {
+              console.log(this.subname)
+            }
+          }
+        }
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+          el: '#app',
+          data: {},
+          methods: {
+            getResult() {
+              console.log(document.getElementById('xxy').innerText)
+              console.log(this.$refs.xxy.innerText) 
+              console.log(this.$refs.mybelle.name)
+              this.$refs.mybelle.show()
+            }
+          },
+          components: {
+            belle
+          }
+        });
+      </script>
+</body>
+</html>

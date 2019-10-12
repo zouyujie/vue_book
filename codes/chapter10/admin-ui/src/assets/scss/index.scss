@@ -1,0 +1,8 @@
+//注意样式引用顺序
+@import './variables.scss';
+@import './element-variables.scss';
+@import './main.scss';
+@import "./element-ui.scss";
+@import './transition.scss';
+@import "./base-common-form.scss";
+@import './common.scss';

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind</title>
+</head>
+
+<body>
+    <div id="app">
+        <div style="width:100px;height:30px;background-color: green;" v-bind:title="myTitle"></div>
+        <!-- 错误 -->
+        <input type="button" value="点我吧（错误姿势）" :title="myTitle + '———卢照邻'" v-on:click="alert('初唐四杰（王杨卢骆）之一，排名第三')">
+        <!-- 正确 -->
+        <input type="button" value="点我吧（正确姿势）" :title="myTitle + '———卢照邻'" v-on:click="alertInfo('初唐四杰（王杨卢骆）之一，排名第三')">
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                myTitle: '得成比目何辞死，愿作鸳鸯不羡仙'
+            },
+            methods: { // 这个 methods属性中定义了当前Vue实例所有可用的方法
+                alertInfo: function (msg) {
+                    alert(msg)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

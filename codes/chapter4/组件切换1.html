@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+            <a href="" @click.prevent="flag=true">登录</a>
+            <a href="" @click.prevent="flag=false">注册</a>       
+            <login v-if="flag"></login>
+            <register v-else="flag"></register>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var login = Vue.extend({
+            template: '<h3>登录</h3>' // 通过 template 属性，指定了组件要展示的HTML结构
+        });
+        Vue.component('login', login); //使用 Vue.component('组件的名称', 创建出来的组件模板对象)
+        Vue.component('register', {
+            template: '<h3>注册</h3>'
+        });
+        // 创建 一个Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: true
+            },
+            components: {},// 定义实例内部私有组件的
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

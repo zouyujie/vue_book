@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .router-link-active {
+            color: lightblue;
+        }
+
+        .active {
+            color: orange;
+        }
+
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h3>xx后台登录系统</h3>
+        <router-link to="/login">用户登录</router-link>
+        <router-link to="/register">注册用户</router-link>
+        <transition mode="out-in">
+            <!-- 3. 使用 router-view 组件来显示匹配到的组件 -->
+            <router-view></router-view>
+        </transition>
+    </div>
+    <template id="login">
+        <div>
+            <router-link to="/login/forgetPwd">忘记密码</router-link>
+            <router-link to="/scanLogin">扫描登录</router-link>
+            <transition mode="out-in">
+            <router-view></router-view>
+        </transition>
+        </div>
+    </template>
+    <script src="./js/vue.js"></script>
+    <!-- 1. 导入 vue-router 组件类库 -->
+    <script src="./js/vue-router.js"></script>
+    <script>
+        //register 组件
+        const register = Vue.extend({
+            template: '<div>注册组件</div>'
+        });
+        // 子路由中的 forgetPwd 组件
+        const forgetPwd = Vue.extend({
+            template: '<div>忘记密码找回</div>'
+        });
+
+        // 子路由中的 scanLogin 组件
+        const scanLogin = Vue.extend({
+            template: '<div>这里是扫码登录</div>'
+        });
+        // 6. 创建 Vue 实例，得到 ViewModel
+        new Vue({
+            el: '#app',
+            created() {
+                console.log(this.$route);
+            },
+            router: new VueRouter({
+                routes: [
+                    { path: '/', redirect: '/login' }, //页面一加载时，默认跳转到login组件
+                    {
+                        path: '/login', component: { template: '#login' },
+                        children: [
+                            { path: 'forgetPwd', component: forgetPwd },
+                            { path: '/scanLogin', component: scanLogin }
+                        ],
+                    },
+                    { path: '/register', component: register }
+                ],
+                linkActiveClass: 'active'
+            }) // 使用 router 属性来使用路由规则
+        });
+    </script>
+</body>
+
+</html>

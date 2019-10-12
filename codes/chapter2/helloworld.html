@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+     <!-- 1. 导入Vue的包 -->
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{message}}</div>
+    </div>
+    <script>
+        //2. 返回一个vue实例对象
+        //当我们导入包之后，在浏览器的内存中，就多了一个 Vue 构造函数
+        //注意：我们 new 出来的这个 vm 对象，就是我们 MVVM中的VM调度者
+       const app= new Vue({
+            el: '#app', // 表示，当前我们 new 的这个 Vue 实例，要控制页面上的哪个区域
+            // 这里的 data 就是 MVVM中的 M，专门用来保存 每个页面的数据的
+            data: { // data 属性中，存放的是 el 中要用到的数据
+                message: 'Hello World!' //通过 Vue 提供的指令，很方便的就能把数据渲染到页面上
+            }
+        })
+    </script>
+</body>
+
+</html>

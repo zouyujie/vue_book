@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        .header {
+            width: 100%;
+            height: 70px;
+            line-height: 70px;
+            background-color: lightyellow;
+        }
+
+        .content {
+            width: 100%;
+            position: absolute;
+            top: 70px;
+            height:calc(100% - 70px);
+        }
+
+        .sidebar {
+            width: 180px;
+            height: 100%;
+            background-color: lightgray;
+            float: left;
+        }
+
+        .mainbox {
+            width: calc(100% - 180px);
+            height: 100%;
+            background-color: lightgreen;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <router-view></router-view>
+        <div class="content">
+            <router-view name="sidebar"></router-view>
+            <router-view name="main"></router-view>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script>
+        var header = Vue.component('header', {
+            template: '<div class="header">顶部导航</div>'
+        });
+
+        var sidebar = Vue.component('sidebar', {
+            template: '<div class="sidebar">左侧菜单导航</div>'
+        });
+
+        var mainbox = Vue.component('mainbox', {
+            template: '<div class="mainbox">主内容</div>'
+        });
+
+        // 创建路由对象
+        var router = new VueRouter({
+            routes: [
+                {
+                    path: '/', components: {
+                        default: header,
+                        sidebar: sidebar,
+                        main: mainbox
+                    }
+                }
+            ]
+        });
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router
+        });
+    </script>
+</body>
+
+</html>

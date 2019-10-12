@@ -1,0 +1,211 @@
+/*created by zouqj on 2019-5-8
+* 重写HYTML元素默认样式
+*/
+
+/*隐藏IE input 清除按钮  查看密码按钮*/
+::-ms-clear,
+::-ms-reveal {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Microsoft YaHei' !important;
+  position: relative;
+  min-width: 1280px;
+  font-size: 14px;
+  // background-image: url(../images/common/loading.gif);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+a {
+  text-decoration: none
+}
+
+input {
+  outline: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+input::-webkit-input-placeholder {
+  color: #888;
+  text-align: left;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #888;
+  text-align: left;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #888;
+  text-align: left;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #888;
+  text-align: left;
+}
+
+button {
+  outline: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+/*-----------------------------定义滚动条样式------------------*/
+/*webkit内核*/
+::-webkit-scrollbar {
+  width: 8px;
+  /*滚动条宽度*/
+  height: 8px;
+  /*滚动条高度*/
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  /*滚动条的背景颜色*/
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #7abef9;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    background: #67cbff;
+  }
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #67cbff;
+}
+
+/*火狐*/
+
+@-moz-document url-prefix(http: //),url-prefix(https://) {
+
+  /* 滚动条颜色 */
+  scrollbar {
+    -moz-appearance: none !important;
+    background: rgb(0, 255, 0) !important;
+  }
+
+  /* 滚动条按钮颜色 */
+  thumb, scrollbarbutton {
+    -moz-appearance: none !important;
+    background-color: rgb(0, 0, 255) !important;
+  }
+
+  /* 鼠标悬停时按钮颜色 */
+  thumb:hover, scrollbarbutton:hover {
+    -moz-appearance: none !important;
+    background-color: rgb(255, 0, 0) !important;
+  }
+
+  /* 隐藏上下箭头 */
+  scrollbarbutton {
+    display: none !important;
+  }
+
+  /* 纵向滚动条宽度 */
+  scrollbar[orient="vertical"] {
+    min-width: 15px !important;
+  }
+}
+
+/*IE内核*/
+html, body {
+  scrollbar-arrow-color: #67cbff;
+  /**/
+  /*三角箭头的颜色*/
+  scrollbar-face-color: #7abef9;
+  /**/
+  /*立体滚动条的颜色*/
+  scrollbar-3dlight-color: #7abef9;
+  /**/
+  /*立体滚动条亮边的颜色*/
+  scrollbar-highlight-color: #67cbff;
+  /**/
+  /*滚动条空白部分的颜色*/
+  // scrollbar-shadow-color: #999;
+  /**/
+  /*立体滚动条阴影的颜色*/
+  scrollbar-darkshadow-color: #ccc;
+  /**/
+  /*立体滚动条强阴影的颜色*/
+  scrollbar-track-color: #ccc;
+  /**/
+  /*立体滚动条背景颜色*/
+  scrollbar-base-color: #f8f8f8;
+  /**/
+  /*滚动条的基本颜色*/
+}
+
+/*滚动条的基本颜色*/
+
+/*-------------el-table滚动条样式----------------- start*/
+/*webkit内核*/
+.el-table__body-wrapper.is-scrolling-none::-webkit-scrollbar {
+  width: 8px;
+  /*滚动条宽度*/
+  height: 8px;
+  /*滚动条高度*/
+}
+
+.el-table__body-wrapper.is-scrolling-none::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.el-table__body-wrapper.is-scrolling-none::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #64b5f6;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    background: #67cbff;
+  }
+}
+
+.el-table__body-wrapper.is-scrolling-none::-webkit-scrollbar-thumb:window-inactive {
+  background: #67cbff;
+}
+
+.el-table td.gutter,
+.el-table th.gutter {
+  display: none;
+}
+
+// ----------------!*el-table滚动条样式 end*!---------------
+/*关闭Chrome浏览器表单自动填充默认样式*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition-delay: 99999s;
+  -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+}

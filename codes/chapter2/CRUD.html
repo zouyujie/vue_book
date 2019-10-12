@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户列表</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加用户</h3>
+            </div>
+            <div class="panel-body form-inline">
+                <label>
+                    用户名称:
+                    <input type="text" class="form-control" v-model="userInfo.username">
+                </label>
+                <label>
+                    江湖绰号:
+                    <input type="text" class="form-control" v-model="userInfo.title">
+                </label>
+                <label>
+                    搜索名称关键字：
+                    <input type="text" class="form-control" v-focus v-model="keywords">
+                </label>
+                 <!-- 在Vue中，使用事件绑定机制，为元素指定处理函数的时候，如果加了小括号，就可以给函数传参了 -->
+                 <input type="button" value="添加" class="btn btn-primary" @click="addUser()">
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>绰号</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+              <!-- 在 search 方法内部，通过执行 for 循环，把所有符合搜索关键字的数据，保存到一个新数组中，返回 -->
+                <tr v-for="item in search(keywords)">
+                    <td>{{item.id}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.createTime|dataFormat}}</td>
+                    <td>
+                        <a href="" @click.prevent="delUser(item.id)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        // 自定义全局指令 v-focus，为绑定的元素自动获取焦点：
+        Vue.directive('focus', {
+            inserted: function (el) { // inserted 表示被绑定元素插入父节点时调用
+                el.focus();
+            }
+        });
+        Vue.filter('dataFormat',// 全局过滤器，所有VM对象所控制的View区域都能进行使用
+            function (input, pattern = "") { //在参数列表中 通过 pattern="" 来指定形参默认值，防止报错
+                var dt = new Date(input);
+                // 获取年月日
+                var y = dt.getFullYear();
+                var m = (dt.getMonth() + 1).toString().padStart(2, '0');
+                var d = dt.getDate().toString().padStart(2, '0');
+                // 如果传递进来的字符串类型，转为小写之后，等于 yyyy-mm-dd，那么就返回 年-月-日
+                // 否则，就返回  年-月-日 时：分：秒
+                if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                    return `${y}-${m}-${d}`;
+                } else {
+                    // 获取时分秒
+                    var hh = dt.getHours().toString().padStart(2, '0');
+                    var mm = dt.getMinutes().toString().padStart(2, '0');
+                    var ss = dt.getSeconds().toString().padStart(2, '0');
+                    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+                }
+            });
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                keywords: '',
+                userInfo: { username: '', title: '' },
+                list: [
+                    { id: 1, username: '楚留香', title: '盗帅', createTime: new Date() },
+                    { id: 2, username: '沈浪', title: '天下第一名侠', createTime: new Date() }
+                ]
+            },
+            methods: {
+                //添加用户
+                addUser() {
+                    var id = this.list[this.list.length - 1].id + 1;
+                    var userInfo = { id: id, username: this.userInfo.username, title: this.userInfo.title, createTime: new Date() };
+                    this.list.push(userInfo);
+                    this.userInfo = { username: '', title: '' };
+                },
+                //获取数组中的最大主键值并+1
+                getId() {
+                    var ids = this.list.map(n => {
+                        return n.id;
+                    });
+                    var id = Math.max.apply(Math, ids);
+                    return id + 1;
+                },
+                // 根据Id删除用户
+                delUser(id) {
+                    // 1. 如何根据Id，找到要删除这一项的索引
+                    // 2. 如果找到索引了，直接调用数组的 splice 方法进行移除
+                    var index = this.list.findIndex(item => {
+                        if (item.id == id) {
+                            return true;
+                        }
+                    })
+                    this.list.splice(index, 1)
+                },
+                // 根据关键字（用户名），进行数据的搜索
+                search(keywords) {
+                    //  注意：forEach、some、filter、findIndex、这些都属于数组的新方法，
+                    //  都会对数组中的每一项，进行遍历，执行相关的操作；
+                    return this.list.filter(item => {
+                        //  ES6中，为字符串提供了一个新方法，叫做 String.prototype.includes('要包含的字符串')
+                        //  如果包含，则返回 true ，否则返回 false
+                        if (item.username.includes(keywords)) {
+                            return item
+                        }
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

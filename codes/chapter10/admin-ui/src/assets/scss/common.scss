@@ -1,0 +1,468 @@
+/* created by zouqj on 2019-5-8
+    此样式文件用于定义公共样式
+    暂定规则： 功能_样式_...... 类型
+*/
+/* 公共样式*/
+// $yellow:#C7D200;
+
+.clear:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/*修改placeholder*/
+.clear-both::after {
+    content: "";
+    width: 0;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-ellipse {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+/*常用布局*/
+
+.fl {
+    float: left
+}
+
+.fr {
+    float: right
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.mr30 {
+    margin-right: 30px;
+}
+
+.mr40 {
+    margin-right: 40px;
+}
+
+.mr50 {
+    margin-right: 50px;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.ml20 {
+    margin-left: 20px;
+}
+
+.ml30 {
+    margin-left: 30px;
+}
+
+.ml40 {
+    margin-left: 40px;
+}
+
+.ml50 {
+    margin-left: 50px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.mb50 {
+    margin-bottom: 50px;
+}
+
+.pt10 {
+    padding-top: 10px;
+}
+
+.pl10 {
+    padding-left: 10px;
+}
+
+.pl15 {
+    padding-left: 15px;
+}
+
+.pl20 {
+    padding-left: 20px;
+}
+
+.pl30 {
+    padding-left: 30px;
+}
+
+.pr20 {
+    padding-right: 20px;
+}
+
+.pr30 {
+    padding-right: 30px;
+}
+
+.pr40 {
+    padding-right: 40px;
+}
+
+.pb10 {
+    padding-bottom: 10px;
+}
+
+.pb0 {
+    padding-bottom: 0px;
+}
+
+.pt0 {
+    padding-top: 0px;
+}
+
+.left-active-btn {
+    position: absolute;
+    top: 400px;
+    left: -13px;
+    font-size: 20px;
+    color: #bebebe;
+    cursor: pointer;
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.pr {
+    position: relative;
+}
+
+/*时间粒度*/
+
+.granularity {
+    width: 108px;
+    border: 1px solid #909A9A;
+    height: 22px;
+    line-height: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+}
+
+/*------------------------------------------------------------*/
+
+html,
+body {
+    min-width: 1400px;
+}
+
+.p-container {
+    height: 100%;
+    min-width: 1284px;
+}
+
+//分舵树布局
+.layout-tree {
+    float: left;
+    margin-left: 20px;
+}
+
+/*标题前的小矩形*/
+.rectangle {
+    width: 3px;
+    height: 18px;
+    display: block;
+    color: $cardTitle;
+    background-color: $cardTitle;
+    float: left;
+    margin: 14px 8px 0px 10px;
+}
+
+.p-abs {
+    position: absolute;
+}
+
+//--------------------------------- 查询框----------------------------
+.u-layout-search {
+    $defaultFontColor: #3a3a3a;
+    $defaultGrayBorder: #c3c9d5;
+    $defaultGrayBg: #f7f7f7;
+
+    .text-ipt {
+        padding: 0 10px;
+        border: 0;
+        outline: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .title-input-group {
+        position: relative; //遮罩层用
+        display: inline-block;
+        width: auto;
+        height: 32px;
+        line-height: 32px;
+        color: $defaultFontColor;
+        margin-right: 16px;
+
+        .text {
+            display: inline-block;
+            height: 32px; //默认宽度
+            line-height: 32px;
+
+            .red-star {
+                color: red;
+                float: left;
+            }
+        }
+
+        .input-container {
+            min-width: 150px; //默认宽度
+            height: 32px;
+            float: right;
+            position: relative;
+            z-index: 1;
+            border-radius: 3px;
+            overflow: hidden;
+            box-sizing: border-box;
+
+            .item {
+                width: 100%;
+                overflow: hidden;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                vertical-align: middle;
+                box-sizing: border-box;
+                line-height: 30px !important;
+                // border-radius: 15px;
+            }
+
+            .textarea {
+                resize: none;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+        }
+
+        .radio-input {
+            line-height: 32px;
+            border: none !important;
+        }
+
+        .checkbox-input {
+            border: none !important;
+        }
+
+        /*搜索*/
+        .search-input {
+            position: relative;
+            font-size: 14px;
+
+            .text-ipt {
+                padding: 0 20px 0 30px;
+            }
+
+            .clear-icon,
+            .search-icon {
+                position: absolute;
+                width: 14px;
+                height: 14px;
+                top: 50%;
+                margin-top: -8px;
+                cursor: pointer;
+                opacity: 0.8;
+            }
+
+            .clear-icon {
+                right: 10px;
+                display: none;
+            }
+
+            .search-icon {
+                left: 5px;
+            }
+        }
+
+        .input-container:hover .search-input .clear-icon {
+            display: block;
+        }
+
+        .disable-mark {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            cursor: not-allowed;
+            display: none;
+        }
+    }
+
+    //禁用
+    .title-input-group.disabled {
+        opacity: 0.5;
+
+        .disable-mark {
+            display: block;
+        }
+    }
+
+    .title-input-group .item.dobule-text {
+        .ipt {
+            height: 100%;
+            width: 49%;
+            background: white;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .ipt.left {
+            float: left;
+        }
+
+        .ipt.right {
+            float: right;
+        }
+    }
+
+    //灰色主题
+    .title-input-group.gray {
+        .input-container {
+
+            .item.text-input,
+            .item.select-input,
+            .item.search-input,
+            .item.tree-box {
+                background: $defaultGrayBg;
+            }
+
+            .text-ipt {
+                background: $defaultGrayBg;
+            }
+
+            .item.dobule-text {
+                .ipt {
+                    background: white;
+                }
+            }
+
+            .item .el-select {
+                width: 100%;
+            }
+
+            .item.textarea {
+                background: $defaultGrayBg;
+            }
+        }
+    }
+
+    //无边框
+    .title-input-group.no-border {
+        .input-container {
+            .item {
+                border: 0;
+            }
+        }
+    }
+
+    //error
+    .title-input-group .rule.error,
+    .title-input-group.no-border .rule.error {
+        border: 1px solid #ff2222;
+    }
+
+    .inspection .el-range-editor--small.el-input__inner {
+        border-radius: 16px;
+        width: 215px;
+    }
+
+    .el-Alter .el-input__inner {
+        border: 0;
+        background: rgba(0, 0, 0, 0);
+    }
+
+    .el-Alter .el-input--small .el-input__inner {
+        border: 1px solid #ccc;
+    }
+
+    .el-input__inner {
+        border-radius: 3px !important;
+        background: #ffffff;
+        border-color: #ffffff;
+        border: 1px solid $defaultGrayBorder;
+    }
+
+    // .u-layout-right-item {
+    //     .el-button.el-button--small {
+    //         border-radius: 14px;
+    //     }
+    // }
+}
+
+//表格中的操作列
+.opration-btn {
+    display: flex;
+    justify-content: space-around;
+}
+
+//超级链接样式
+.u-link {
+    color: #3678BA;
+    cursor: pointer;
+
+    &:hover {
+        color: $hoverColor;
+    }
+}

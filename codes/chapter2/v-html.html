@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-html</title>
+</head>
+
+<body>
+    <div id="app">
+         <div v-text="html"></div>
+        <div v-html="html"></div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                html: '感谢每一位从身边溜走的人——<span style="color:red;">《独自等待》</span>'
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <style>
+        .form-control{padding: 6px;}
+        ul{padding-left: 10px;margin-right: 15px;}
+        li {
+            border: 1px dashed #999;
+            margin: 5px;
+            line-height: 35px;
+            padding-left: 5px;
+            font-size: 12px;
+            width: 100%;
+            list-style: none;
+        }
+
+        li:hover {
+            background-color: lightgreen;
+            transition: all 0.8s ease;
+        }
+
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(80px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.6s ease;
+        }
+
+        /* 下面的 .v-move 和 .v-leave-active 配合使用，能够实现列表后续的元素，渐渐地漂上来的效果 */
+        .v-move {
+            transition: all 0.6s ease;
+        }
+
+        .v-leave-active {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-body form-inline">
+                <label>
+                    门派:
+                    <input type="text" class="form-control" v-model="school.name">
+                </label>
+                <label>
+                    掌门人:
+                    <input type="text" class="form-control" v-model="school.ceo">
+                </label>
+                <!-- 在Vue中，使用事件绑定机制，为元素指定处理函数的时候，如果加了小括号，就可以给函数传参了 -->
+                <input type="button" value="添加" class="btn btn-primary" @click="add()">
+            </div>
+            <div class="form-inline">
+                <!-- 给 ransition-group 添加 appear 属性，实现页面刚展示出来时候，入场时候的效果 -->
+                <transition-group appear tag="ul">
+                    <li v-for="(item, i) in list" :key="item.name" @click="del(i)">
+                        {{item.name}} --- {{item.ceo}}
+                    </li>
+                </transition-group>
+            </div>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                school: {
+                    ceo: '',
+                    name: '',
+                },
+                list: [
+                    { name: '华山派', ceo: '神剑仙源猿猴穆人清' },
+                    { name: '五毒教', ceo: '何铁手' },
+                    { name: '铁剑门', ceo: '木桑道长' }
+                ]
+            },
+            methods: {
+                add() {
+                    this.list.push({ ceo: this.school.ceo, name: this.school.name })
+                    this.school={ceo: '',name: ''};
+                },
+                del(i) {
+                    this.list.splice(i, 1)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

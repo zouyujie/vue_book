@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for-key</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h3>华山论剑</h3>
+            <label>Id:
+                <input type="text" v-model="id">
+            </label>
+            <label>绰号:
+                <input type="text" v-model="name">
+            </label>
+            <input type="button" value="晋级" @click="add">
+            <table>
+                <!-- :key="item.id" -->
+                <tr v-for="item in list" :key="item.id">
+                    <td><input type="checkbox" /></td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                list: [
+                    { id: 1, name: '东邪-黄药师' },
+                    { id: 2, name: '西毒-欧阳锋' },
+                    { id: 3, name: '南帝-段智兴' },
+                    { id: 4, name: '北丐-洪七公' },
+                    { id: 5, name: '中神通-王重阳 ' }
+                ]
+            },
+            methods: {
+                add() { // 添加方法
+                    this.list.unshift({ id: this.id, name: this.name })
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

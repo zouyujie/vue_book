@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .router-link-active{
+        color: lightblue;
+    }
+    .active{
+        color: orange;
+    }
+
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.5s ease;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- <a href="#/login">登录</a>
+        <a href="#/register">注册</a> -->
+
+        <!-- 2. 使用 router-link 组件来导航 -->
+        <!-- 方式一 -->
+        <router-link to="/login?name=yujie&pwd=123">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <transition mode="out-in">
+            <!-- 3. 使用 router-view 组件来显示匹配到的组件 -->
+            <router-view></router-view>
+        </transition>
+    </div>
+    <script src="./js/vue.js"></script>
+    <!-- 1. 导入 vue-router 组件类库 -->
+    <script src="./js/vue-router.js"></script>
+    <script>
+        // 4.1 使用 Vue.extend 来创建登录组件
+        var login = Vue.extend({
+            template: '<h3>登录组件---{{ $route.query.name }} --- {{ $route.query.pwd }}</h3>' //方式一
+        });
+
+        // 4.2 使用 Vue.extend 来创建注册组件
+        var register = Vue.extend({
+            template: '<h3>注册组件</h3>'
+        });
+
+        // 5. 创建一个路由 router 实例，通过 routers 属性来定义路由匹配规则
+        var router = new VueRouter({
+            routes: [
+                { path: '/', redirect: '/login' }, //页面一加载时，默认跳转到login组件
+                { path: '/login', component: login }, //方式一
+                { path: '/register', component: register }
+            ],
+            linkActiveClass: 'active'
+        });
+        // 6. 创建 Vue 实例，得到 ViewModel
+        new Vue({
+            el: '#app',
+            created() {
+                console.log(this.$route);
+            },
+            router: router // 使用 router 属性来使用路由规则
+        });
+    </script>
+</body>
+
+</html>

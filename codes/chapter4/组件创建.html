@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <account></account>
+        <register></register>
+        <!-- <register2></register2> -->
+        <register3></register3>
+        <my-login></my-login>
+    </div>
+    <!-- 3. -->
+    <script id="tmpl" type="x-template">
+            <div><a href="#">登录</a> | <a href="#">注册</a></div>
+     </script>
+    <template id="tmpl_private">
+        <h1>这是私有组件</h1>
+    </template>
+    <script src="./js/vue.js"></script>
+    <script>
+        //1.
+        var login = Vue.extend({
+            template: '<h3>登录</h3>' // 通过 template 属性，指定了组件要展示的HTML结构
+        });
+        Vue.component('myLogin', login); //使用 Vue.component('组件的名称', 创建出来的组件模板对象)
+        //2.
+        Vue.component('register', {
+            template: '<h3>注册</h3>'
+        });
+        // 错误
+        // Vue.component('register2', {
+        //     template: '<h3>注册2</h3><div>正文2</div>'
+        // });
+        // 正确
+        Vue.component('register3', {
+            template: '<div><h3>注册3</h3><div>正文3</div></div>'
+        });
+        //3.
+        Vue.component('account', {
+            template: '#tmpl'
+        });
+        // 创建 一个Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+            },
+            components: { // 定义实例内部私有组件的
+                login: {
+                    template: '#tmpl_private'
+                }
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

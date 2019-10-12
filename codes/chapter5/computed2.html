@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="title">
+        <input type="text" v-model="name">
+        <!-- 点击按钮重新为 计算属性 fullName 赋值 -->
+        <input type="button" value="修改计算属性" @click="changeName">
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                title: '好色莫过美人剑',
+                name: '富贵王侯黄金殿',
+            },
+            methods: {
+                changeName() {
+                    this.fullName = '闪电不及方可贵 - 燕子无双名满天';
+                }
+            },
+            computed: {
+                fullName: {
+                    get: function () {
+                        return this.title + ' - ' + this.name;
+                    },
+                    set: function (newVal) {
+                        var parts = newVal.split(' - ');
+                        this.title = parts[0];
+                        this.name = parts[1];
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

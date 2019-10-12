@@ -1,0 +1,255 @@
+/*此文件用于放置页面布局公用UI样式*/
+
+
+/**************************/
+.u-layout-container {
+    height: 100%;
+}
+
+.u-layout-right-content {
+    background: #fff;
+}
+
+
+/*右侧： 标题-搜索条件-表格 布局样式组*/
+/*右侧内容区域顶部蓝色文本标题*/
+.u-layout-title {
+    width: 100%;
+    height: 36px;
+    background: #F5F9F9;
+    line-height: 36px;
+    padding-left: 28px;
+    font-family: MicrosoftYaHei;
+    color: rgba(34, 116, 164, 1);
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid #E5EEF3;
+    font-weight: bold;
+}
+
+/*搜索条件栏*/
+.u-layout-search {
+    padding: 20px 0px 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.u-layout-search:after {
+    content: "";
+    width: 0;
+    height: 0;
+    display: block;
+    clear: both;
+}
+
+/*左侧搜索条件*/
+/*当前1080 - 60*/
+/*无右侧悬浮按钮不使用此层*/
+.u-layout-search .u-layout-left-proviso {
+    float: left;
+    // width: 88%;
+    min-width: 880px;
+    width: calc(100% - 100px);
+}
+
+/*右侧悬浮2个操作按钮*/
+.u-layout-search.two .u-layout-left-proviso {
+    width: calc(100% - 200px);
+}
+
+.u-layout-search.two .u-layout-right-item {
+    width: 200px;
+}
+
+/*右侧悬浮3个操作按钮*/
+.u-layout-search.three .u-layout-left-proviso {
+    width: calc(100% - 300px);
+}
+
+.u-layout-search.three .u-layout-right-item {
+    width: 300px;
+}
+
+.u-layout-search .u-layout-left-item {
+    display: inline-block;
+    // padding: 20px 30px 0 0;
+}
+
+/*右侧悬浮操作按钮（例如：新增）todo 仅支持右侧一个按钮的布局，多个按钮自己在业务模块加类覆盖 u-layout-left-proviso 的宽 u-layout-right-btn的宽*/
+.u-layout-search .u-layout-right-btn {
+    float: right;
+    max-width: 120px;
+}
+
+.u-layout-search .u-layout-right-item {
+    // padding: 24px 0 0 20px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 40px;
+    padding-right: 5px;
+
+    .el-button {
+        height: 32px;
+    }
+}
+
+/*右侧悬浮2个按钮start*/
+.u-layout-search.u-layout-dobule .u-layout-left-proviso {
+    // width: 75%;
+    min-width: 760px;
+}
+
+.u-layout-search.u-layout-dobule .u-layout-right-btn {
+    max-width: 220px
+}
+
+/*右侧悬浮2个按钮end*/
+
+/**************************/
+
+.u-layout-table {
+    padding: 0 30px 30px 30px;
+}
+
+.u-layout-lfet-tree {
+    width: 240px;
+    position: absolute;
+    left: 10px;
+    top: 46px;
+    /* t-layout-title height 36 */
+    bottom: 0;
+    overflow: auto;
+    border-right: 1px solid #E5EEF3;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.u-layout-right-sub {
+    position: absolute;
+    left: 260px;
+    right: 10px;
+    top: 46px;
+    bottom: 10px;
+    padding: 10px;
+    overflow: auto;
+    background: #fff;
+}
+
+.u-layout-right-info .u-layout-item {
+    display: inline-block;
+    margin: 10px;
+}
+
+/*带蓝色竖线的标题*/
+.u-layout-line-title {
+    padding: 20px 10px;
+    position: relative;
+    color: #1881BF;
+    font-size: 16px;
+    line-height: 16px;
+    display: block;
+}
+
+.u-layout-line-title:after {
+    content: "";
+    width: 2px;
+    height: 16px;
+    background: #1881BF;
+    position: absolute;
+    left: 0;
+    top: 20px;
+}
+
+/*带蓝色竖线的标题*/
+
+
+/****** icon***********/
+/*图标基本类*/
+.u-icon-custom {
+    display: inline-block;
+    margin: 0 2px;
+    width: 14px;
+    height: 14px;
+}
+
+/*图标具体类 导入*/
+//.u-icon-import{
+//    background: url("../../src/images/common/import.png") no-repeat;
+//    background-size: 100% 100%;
+//}
+/*图标具体类 导出*/
+//.u-icon-export{
+//    background: url("../../src/images/common/export.png") no-repeat;
+//    background-size: 100% 100%;
+//}
+/*****************/
+
+.u-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    padding: 0 10px;
+    margin: 0;
+    outline: none;
+}
+
+.u-btn-blue {
+    background: #1881BF;
+    color: #fff;
+}
+
+.u-btn-white {
+    background: #fff;
+    border: 1px solid #E5EEF3;
+    color: #3a3a3a;
+}
+
+/* echart 数据视图表格样式 */
+
+.coustom-echarts-table {
+    width: 94%;
+    height: 400px;
+    margin: 0 3%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: center;
+}
+
+.coustom-echarts-table thead {
+    table-layout: fixed;
+}
+
+.coustom-echarts-table tr {
+    border-bottom: 1px solid #ebeef5
+}
+
+.coustom-echarts-table tr:hover {
+    background: #fbf8e9;
+}
+
+.coustom-echarts-table tr.even {
+    background: rgba(229, 239, 251, 0.1)
+}
+
+.coustom-echarts-table tr.even:hover {
+    background: #fbf8e9;
+}
+
+.coustom-echarts-table thead {
+    background: #e5effb;
+}
+
+.coustom-echarts-table thead td {
+    color: #909399;
+    padding: 10px 0;
+}
+
+.coustom-echarts-table tbody tr td {
+    color: #606266;
+    padding: 10px;
+}
+
+/* echart 数据视图表格样式 */

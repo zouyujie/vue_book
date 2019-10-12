@@ -1,0 +1,45 @@
+// @import '@/assets/scss/variables.scss';
+
+.el-button--one-level,
+.el-button--wait-sure {
+  background-color: #B7230B;
+  color: $fontColor;
+}
+
+.el-button--two-level,
+.el-button--sure {
+  background-color: #F17D00;
+  color: $fontColor;
+}
+
+.el-button--three-level,
+.el-button--processing {
+  background-color: #C3C325;
+  color: $fontColor;
+}
+
+.el-button--four-level {
+  background-color: #2595C3;
+  color: $fontColor;
+}
+
+.el-button--five-level {
+  background-color: #25C3A7;
+  color: $fontColor;
+}
+
+.el-button--mini {
+  border-width: 0px;
+}
+
+.i-status-btn,
+.i-level-btn {
+  .el-button--mini {
+    cursor: default;
+  }
+}
+
+.el-button--resolved {
+  background-color: #2EB34A;
+  color: white;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入第三方样式文件 -->
+    <link rel="stylesheet" href="./css/animate.css">
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="隐藏/显示" @click="flag=!flag">
+        <!-- 1. 使用 transition 元素，把需要被动画控制的元素，包裹起来 -->
+        <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
+            <div v-if="flag">你见，或者不见我，我就在那里，不悲不喜</div>
+        </transition>
+        <!-- 2.使用 :duration="毫秒值" 来统一设置 入场 和 离场 时候的动画时长-->
+        <transition enter-active-class="rubberBand" leave-active-class="swing" :duration="200">
+            <div v-if="flag" class="animated">你念，或者不念我，情就在那里，不来不去</div>
+        </transition>
+        <!-- 3.使用  :duration="{ enter: 300, leave: 600 }" 来分别设置入场的时长和离场的时长-->
+        <transition enter-active-class="bounceIn" leave-active-class="bounceOut" :duration="{ enter: 200, leave: 400 }">
+            <div v-if="flag" class="animated"> 你爱,或者不爱我,爱就在那里,不增不减 </div>
+        </transition>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 创建 一个Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false //控制隐藏显示，ture：显示，false：隐藏
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

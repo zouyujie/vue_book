@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div id="app">
+    <son :parentname="name"></son>
+</div>
+
+<body>
+    <script src="./js/vue.js"></script>
+    <script>
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '郭靖'
+            },
+            components: {
+                son: {
+                    template: '<h3>郭襄的父亲是：{{parentname}}</h3>',
+                    props: ['parentname']
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

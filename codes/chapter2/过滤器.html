@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过滤器</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{val|toFixed(2)}}</div>
+        <div> {{dt | dataFormat('yyyy-mm-dd')}}</div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        // 定义一个全局过滤器：四舍五入，保留消小数点后n位
+        Vue.filter('toFixed', function (num, n) {
+            if (isNaN(num)) {
+                return 0;
+            }
+            const p1 = Math.pow(10, n + 1);
+            const p2 = Math.pow(10, n);
+            return Math.round(num * p1 / 10) / p2;
+        });
+        //这就是一个VM对象
+        const app = new Vue({
+            el: '#app',
+            data: {
+                dt: new Date(),
+                val: 3.14159
+            },
+            filters: { // 私有局部过滤器，只能在当前VM对象所控制的View区域进行使用
+                dataFormat(input, pattern = "") { //在参数列表中 通过 pattern="" 来指定形参默认值，防止报错
+                    var dt = new Date(input);
+                    // 获取年月日
+                    var y = dt.getFullYear();
+                    var m = (dt.getMonth() + 1).toString().padStart(2, '0');
+                    var d = dt.getDate().toString().padStart(2, '0');
+                    // 如果传递进来的字符串类型，转为小写之后，等于 yyyy-mm-dd，那么就返回 年-月-日
+                    // 否则，就返回  年-月-日 时：分：秒
+                    if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                        return `${y}-${m}-${d}`;
+                    } else {
+                        // 获取时分秒
+                        var hh = dt.getHours().toString().padStart(2, '0');
+                        var mm = dt.getMinutes().toString().padStart(2, '0');
+                        var ss = dt.getSeconds().toString().padStart(2, '0');
+                        return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

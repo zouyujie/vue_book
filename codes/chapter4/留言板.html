@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+</head>
+
+<body>
+    <div id="app">
+        <message-board @func="loadMessages"></message-board>
+        <ul class="list-group">
+            <li class="list-group-item" v-for="item in list" :key="item.createOn">
+                <span class="badge">留言人： {{ item.username }}</span>
+                {{ item.content }} 留言时间：{{item.createOn|dataFormat}}
+            </li>
+        </ul>
+    </div>
+    <template id="tmpl">
+            <div class="panel panel-primary">
+                <div class="panel-body form-inline">
+                    <div class="form-group">
+                        <label>留言人：</label>
+                        <input type="text" class="form-control" v-model="username">
+                    </div>
+                    <div class="form-group">
+                        <label>留言内容：</label>
+                        <textarea class="form-control" v-model="content"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="发表留言" class="btn btn-primary" @click="postMessage">
+                    </div>
+                </div>
+            </div>
+    </template>
+    <script src="./js/vue.js"></script>
+    <script>
+                Vue.filter('dataFormat',// 全局过滤器，所有VM对象所控制的View区域都能进行使用
+            function (input, pattern = "") { //在参数列表中 通过 pattern="" 来指定形参默认值，防止报错
+                var dt = new Date(input);
+                // 获取年月日
+                var y = dt.getFullYear();
+                var m = (dt.getMonth() + 1).toString().padStart(2, '0');
+                var d = dt.getDate().toString().padStart(2, '0');
+                // 如果传递进来的字符串类型，转为小写之后，等于 yyyy-mm-dd，那么就返回 年-月-日
+                // 否则，就返回  年-月-日 时：分：秒
+                if (pattern.toLowerCase() === 'yyyy-mm-dd') {
+                    return `${y}-${m}-${d}`;
+                } else {
+                    // 获取时分秒
+                    var hh = dt.getHours().toString().padStart(2, '0');
+                    var mm = dt.getMinutes().toString().padStart(2, '0');
+                    var ss = dt.getSeconds().toString().padStart(2, '0');
+                    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+                }
+            });
+        var messageBoard = {
+            data() {
+                return {
+                    username: '',
+                    content: '',
+                    createOn:''
+                }
+            },
+            template: '#tmpl',
+            methods: {
+                postMessage() { // 发表留言的方法
+                    //构造一个留言对象
+                    var comment = { createOn: Date.now(), username: this.username, content: this.content };
+                    // 从 localStorage 中获取所有的留言
+                    var list = JSON.parse(localStorage.getItem('message') || '[]')
+                    list.unshift(comment);//新发布的留言排在最前面
+                    // 重新保存最新的评论数据
+                    localStorage.setItem('message', JSON.stringify(list))
+                    this.username = this.content = ''; //留言组件数据清零
+                    this.$emit('func')
+                }
+            }
+        }
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    { createOn: Date.now()+1000, username: '白小楼', content: '小楼一夜听春雨' },
+                    { createOn: Date.now()+2000, username: '楚留香', content: '我踏月色而来' },
+                    { createOn: Date.now()+3000, username: '李寻欢', content: '我的飞刀例无虚发' }
+                ]
+            },
+            created() { //最早能调用methods的钩子函数
+                this.loadMessages();
+            },
+            methods: {
+                loadMessages() { // 从本地的 localStorage 中，加载评论列表
+                    var list = JSON.parse(localStorage.getItem('message') || '[]')
+                    if(list&&list.length>0){
+                       this.list=list;
+                    }
+                }
+            },
+            components: {
+                'message-board': messageBoard
+            }
+        });
+    </script>
+</body>
+
+</html>

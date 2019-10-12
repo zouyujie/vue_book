@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义指令</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="searchName" v-focus v-color="'red'" v-font-size="24">
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        // 自定义全局指令 v-focus，为绑定的元素自动获取焦点：
+        Vue.directive('focus', {
+            inserted: function (el) { // inserted 表示被绑定元素插入父节点时调用
+                el.focus();
+            }
+        });
+        // Vue.directive('focus', {
+        //     bind: function (el) { // 每当指令绑定到元素上的时候，会立即执行这个 bind 函数，只执行一次
+        //         // 注意： 在每个函数中，第一个参数，永远是 el ，表示被绑定了指令的那个元素，这个 el 参数，是一个原生的JS对象
+        //         // 在元素刚绑定了指令的时候，还没有 插入到 DOM中去，这时候，调用 focus 方法没有作用
+        //         // 因为一个元素，只有插入DOM之后，才能获取焦点
+        //     },
+        //     inserted: function (el) {  // inserted 表示元素插入到DOM中的时候，会执行 inserted 函数(触发1次)
+        //         el.focus()
+        //         // 和JS行为有关的操作，最好在 inserted 中去执行
+        //     },
+        //     updated: function (el) {  // 当VNode更新的时候，会执行 updated， 可能会触发多次
+
+        //     }
+        // })
+        const app = new Vue({
+            el: '#app',
+            data: {
+                searchName: '春风沉醉的晚上'
+            },
+            // 自定义局部指令 v-color 和 v-font-weight，为绑定的元素设置指定的字体颜色 和 字体粗细：
+            directives: {
+                color: { // 为元素设置指定的字体颜色
+                    bind(el, binding) {
+                        el.style.color = binding.value;
+                    }
+                },
+                //如果要定义的指令名称中间有-号，我们可以将指令名称用字符包起来
+                'font-size': function (el, binding) { //自定义指令的简写形式，等同于定义了 bind 和 update 两个钩子函数
+                    el.style.fontSize = binding.value+'px';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

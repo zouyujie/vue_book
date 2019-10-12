@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+    .ul-nav li{
+        list-style: none;
+        float: left;
+        width:100px;
+        text-align: center;
+        background-color:lawngreen;
+        margin: 0px 1px;
+    }
+    </style>
+    <div id="app">
+        你看不见我
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        var login = {
+            template: '<h3>登录</h3>' // 通过 template 属性，指定了组件要展示的HTML结构
+        };
+        // 创建 Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            render(createElement) {
+                const menu_items = ["少林", "武当", "华山", "昆仑"]
+                return createElement('ul',
+                 {class: { 'ul-nav': true }},
+              menu_items.map(item => createElement('li', item))
+              )
+            }
+        });
+    </script>
+</body>
+
+</html>

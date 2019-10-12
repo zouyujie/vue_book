@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <!-- 3. 自定义两组样式，来控制 transition 内部的元素实现动画 -->
+    <style>
+        /* v-enter 【这是一个时间点】 是进入之前，元素的起始状态，此时还没有开始进入 */
+        /* v-leave-to 【这是一个时间点】 是动画离开之后，离开的终止状态，此时，元素动画已经结束了*/
+        /* 定义进入和离开时候的过渡状态 */
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(150px);
+        }
+
+        /* v-enter-active 【入场动画的时间段】 */
+        /* v-leave-active 【离场动画的时间段】 */
+        /* 定义进入过渡的开始状态和离开过渡的结束状态 */
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.8s ease;
+        }
+
+        /* 定义进入过渡的开始状态和离开过渡的结束状态 */
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        /* 定义进入和离开时候的过渡状态 */
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: all 0.2s ease;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="隐藏/显示" @click="flag=!flag">
+        <!-- 1. 使用 transition 元素，把需要被动画控制的元素，包裹起来 -->
+        <transition>
+            <div v-if="flag"> 你见，或者不见我，我就在那里，不悲不喜 </div>
+        </transition>
+        <transition name="fade">
+            <div v-if="flag"> 你念，或者不念我，情就在那里，不来不去 </div>
+        </transition>
+    </div>
+    <script>
+        // 2. 创建 一个Vue 实例，得到 ViewModel
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false //控制隐藏显示，ture：显示，false：隐藏
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

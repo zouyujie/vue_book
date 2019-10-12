@@ -1,0 +1,39 @@
+/*----------首页公共样式--------*/
+$borderColor: #3c5c75;
+$bccolor:#182037;
+$oneLevelColor:#a62617;
+
+.border {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.left-top {
+    top: 0;
+    left: 0;
+    border-left: 3px solid $borderColor;
+    border-top: 3px solid $borderColor;
+}
+
+.right-top {
+    top: 0;
+    right: -2px;
+    border-right: 3px solid $borderColor;
+    border-top: 3px solid $borderColor;
+}
+
+.left-bottom {
+    bottom: 0;
+    left: 0;
+    border-bottom: 3px solid $borderColor;
+    border-left: 3px solid $borderColor;
+}
+
+.right-bottom {
+    bottom: 0;
+    right: -2px;
+    border-right: 3px solid $borderColor;
+    border-bottom: 3px solid $borderColor;
+}

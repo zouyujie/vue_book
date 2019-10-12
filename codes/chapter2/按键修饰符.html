@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>按键修饰符</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
+        <input v-on:keyup.enter="submit" />
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.config.keyCodes.f2 = 113;//F2键
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                submit(){
+                    console.log("点击提交")
+                }
+            },
+        })
+    </script>
+
+
+</body>
+
+</html>
