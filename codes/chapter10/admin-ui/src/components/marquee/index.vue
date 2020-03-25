@@ -15,8 +15,7 @@ export default {
     }
   },
   data: {
-    intivend: null, // 在data 上定义一个定时器id
-    index: 0
+    intivend: null  // 在data 上定义一个定时器id
   },
   created () {
     this.start();
@@ -30,14 +29,10 @@ export default {
         return;
       }
       this.intivend = setInterval(() => {
-        this.index++;
         //获取到头的第一个字符
         var start = this.content.substring(0, 1)
         //获取到后面所有的字符
         var end = this.content.substring(1)
-        if (this.index == 1) {
-          start = '  ' + start;
-        }
         //重新拼接得到新的字符串，并复制给this.msg
         this.content = end + start
         // 注意： vue 实例会监听自己身上 data 中所有数据的改变，只要数据一
