@@ -22,7 +22,7 @@
         <span class="border left-bottom" />
         <span class="border right-bottom" />
         <div class="i-content">
-          <!-- 奋斗目标 -->
+          <!-- 待办事项 -->
           <matter-detail></matter-detail>
           <!-- 其它武林高手武力排名 -->
           <matter-rank></matter-rank>

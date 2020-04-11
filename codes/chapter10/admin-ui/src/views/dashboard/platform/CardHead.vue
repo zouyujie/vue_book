@@ -11,7 +11,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '奋斗目标'
+      default: '待办事项'
     }
   },
   methods: {

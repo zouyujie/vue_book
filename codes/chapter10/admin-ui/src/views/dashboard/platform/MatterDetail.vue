@@ -65,7 +65,7 @@ export default {
   methods: {
     initData () {
       // 待解决事项详情
-      getMatterList({ pageNum: 0, pageSize: 9 }).then((res) => {
+      getMatterList({ pageNum: 1, pageSize: 9 }).then((res) => {
         console.log('res', res)
         this.items = res.data.list;
         if (this.items.length == 0) {

@@ -52,16 +52,16 @@ export default {
     event: 'setPager'
   },
   computed: {
-    total() {
+    total () {
       return this.pager.total || 0;
     },
     // 检测获取到的数据是否为空
-    isEmptyList() {
+    isEmptyList () {
       return Math.ceil(this.pager.total / this.pager.rows) < this.pager.page;
     }
   },
   watch: {
-    total() {
+    total () {
       // 存在记录但未获取到数据时, 重新请求
       if (this.pager.page > 1 && this.isEmptyList) {
         this.$emit('setPager', Object.assign(this.pager, {
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     // 每页条数
-    onChangeSize(rows) {
+    onChangeSize (rows) {
       const temp = {
         [this.rows]: rows,
         // 当显示条数小于或等于总条数时，重置页数
@@ -85,7 +85,8 @@ export default {
       this.$emit('query');
     },
     // 翻页
-    onChangePage(page) {
+    onChangePage (page) {
+      console.log('page :', page);
       this.$emit('setPager', Object.assign(this.pager, { [this.page]: page }));
       this.$emit('query');
     }
@@ -99,7 +100,7 @@ export default {
   .el-pagination {
     float: right;
   }
- /deep/ .el-pagination__sizes {
+  /deep/ .el-pagination__sizes {
     position: absolute;
     top: 14px;
     left: 150px !important;
