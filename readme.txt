@@ -1,1 +1,3 @@
-《Vue.js 2.x实践指南》随书源码
+銆奦ue.js 2.x瀹炶返鎸囧崡銆嬮殢涔︽簮鐮侊紝涔﹁喘涔板湴鍧�
+浜笢锛歨ttps://item.jd.com/68590536785.html
+<img src="https://images.cnblogs.com/cnblogs_com/jiekzou/780174/o_200426112541a.jpg" style=" border:2px solid #ddd;border-radius:20px;" height="326" width="235">
