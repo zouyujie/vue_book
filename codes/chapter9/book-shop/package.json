@@ -39,7 +39,7 @@
     "D": "^1.0.0",
     "axios": "^0.19.0",
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mint-ui": "^2.2.13",
     "vue": "^2.6.10",
     "vue-awesome-swiper": "^3.1.3",
