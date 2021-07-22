@@ -37,7 +37,7 @@
     "vue-schart": "^1.0.0",
     "vue-wechat-title": "^2.0.4",
     "vuedraggable": "^2.16.0",
-    "xlsx": "^0.14.1"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
